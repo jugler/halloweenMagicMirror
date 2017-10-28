@@ -1,0 +1,55 @@
+<html>
+<head>
+<script type="text/javascript">
+var numImages = 20
+var slideImages = new Array() // create new array to preload images
+for (var index = 0 ; index < numImages; index++){
+  var imgNum = index + 1
+  slideImages[index] = new Image()
+  slideImages[index].src = "./images/"+imgNum+".gif"
+}
+
+
+</script>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+</head>
+<body>
+<img src="images/black.gif" id="slide"/>
+
+<script type="text/javascript">
+
+var step=0
+var currentImage = 0
+var sleepTime = 10000
+
+function slideit(){
+ if (!document.images)
+  return
+  if (step%2 == 0){
+    randomImage = Math.floor((Math.random() * (numImages)) + 0);
+    document.getElementById('slide').src = slideImages[randomImage].src
+    sleepTime=2000
+    if (currentImage<numImages)
+     currentImage++
+   else
+     currentImage=0
+  }else{
+    document.getElementById('slide').src = "images/black.gif"
+    sleepTime = 10000
+  }
+
+
+ if (step<numImages*2)
+  step++
+ else
+  step=0
+ setTimeout("slideit()",sleepTime)
+}
+
+slideit()
+
+</script>
+</body>
+</html>
